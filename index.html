@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="jspdf.min.js"></script>
+    <script src="sudoku.js"></script>
+    <script src="index.js"></script>
+
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">    
+    <title>Download Sudoku</title>
+</head>
+<body>
+    <div id="title">Print Sudoku</div>
+    <div id="line"></div>
+
+    <div id="generate-pdf">Generate PDF</div>
+
+    <div id="sudoku-info">
+        Two sudoku puzzles are created on one A4. <br>
+        Choose the difficulty and number of pages.
+    </div>
+
+    <div>
+        <form>
+            <div id="rad">
+              <input type="radio" id="diff-easy" name="diff" value="65" checked required>
+              <label for="diff-easy" class="option">Easy</label>
+              <input type="radio" id="diff-medium" name="diff" value="41" >
+              <label for="diff-medium" class="option">Medium</label>
+              <input type="radio" id="diff-hard" name="diff" value="26">
+              <label for="diff-hard" class="option">Hard</label>
+              <input type="radio" id="diff-expert" name="diff" value="17" >
+              <label for="diff-expert" class="option">Expert</label>
+            </div>
+            <div>
+              <input type="number" id="number-input" name="number" placeholder="     Number of pages" required max="99" min="1">
+            </div>
+            <div>
+              <input type="submit" value="Print" id="submit">
+            </div>
+        </form>
+        <div class="result-box" id="result"></div>
+    </div>
+    
+    <script>
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', (event) => {
+        event.preventDefault(); // Prevent form submission
+
+        const difficulty = document.querySelector('input[name="diff"]:checked').value;
+        const number = document.getElementById('number-input').value;
+
+
+        download(number,difficulty)
+        });
+
+    </script>
+</body>
+</html>
